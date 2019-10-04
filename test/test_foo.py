@@ -1,7 +1,11 @@
 import pytest
-
+import sys
 from mock_demo.foo import Foo
-from unittest.mock import Mock, MagicMock, patch
+
+if sys.version_info[0] == 3:  # pragma: no cover
+    from unittest.mock import Mock, MagicMock, call, patch
+else:                         # pragma: no cover
+    from mock import Mock, MagicMock, call, patch
 
 
 class FooTestFixture(object):
@@ -24,7 +28,7 @@ class TestFoo():
     def test_get_platform(self, foo_fixture):
         platform = foo_fixture.foo.get_platform()
 
-        assert platform == "linux"
+        assert platform == "linux"lengthy_process
 
     def test_windows_get_platform(self, foo_fixture):
         with patch("mock_demo.foo.sys") as mock_sys:

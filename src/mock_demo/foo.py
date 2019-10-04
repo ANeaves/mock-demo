@@ -25,6 +25,6 @@ class Foo(object):
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     new_foo = Foo()
     print("Platform: {}".format(new_foo.get_platform()))
